@@ -88,8 +88,11 @@ WSGI_APPLICATION = 'nyumbani.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD':config('DB_PASSWORD'),
+        'HOST':config('DB_HOST'),
     }
 }
 
@@ -139,5 +142,17 @@ STATICFILES_DIRS = [
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+cloudinary.config( 
+  cloud_name = 'the-collector', 
+  api_key = '385692492331583', 
+  api_secret = 'wpPzGYYSWBJ_4NCwwSEC0YUMSO8'
+)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'the-collector',
+    'API_KEY': '385692492331583',
+    'API_SECRET': 'wpPzGYYSWBJ_4NCwwSEC0YUMSO8'
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
