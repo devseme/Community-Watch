@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super}}
+{% include "navbar.html" %}
+    <img src="{{ community.community_image.url }}" alt="community image">
+
+   {{community.community_description}}
+  
+    {{community.location}}
+    {{community.occupants_count}}
+
+
+
+{%endblock %}

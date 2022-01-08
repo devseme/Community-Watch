@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load bootstrap4 %}
+{% block styles %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+<style> 
+    #profile-text{
+        color:#FFFF;
+    }
+    </style>
+    
+<div class="box" id="profile-text">
+    <div class="text-center">
+    <div class="title">Create a community</div>
+    <hr>
+    <div class="guide">Please provide an image for your profile picture, a short description of yourself and/or what you do (bio), your location, email address and a link to your portfolio.</div>
+    </div>
+    <form action="{% url 'create_community'%}" method="post" enctype="multipart/form-data">
+        {% load crispy_forms_tags %}
+        {{ community_form | crispy }}
+        {%csrf_token%}    
+        <br>
+        <input type="submit" class="btn btn-dark " value="Create Community">
+    </form>
+</div>
+{% endblock %}
