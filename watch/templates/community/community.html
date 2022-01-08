@@ -3,26 +3,37 @@
 {% block content %}
 {{ block.super}}
 {% include "navbar.html" %}
+ 
+
+<div class = "container">
+  <h3 class="text-center">Available hoods: </h3>
+  <div class = "row justify-content-center  text-light">
     {% for blocks in community %}
-    <img src="{{ blocks.community_image.url }}" alt="community image">
-
-   {{blocks.community_description}}
-   <a href ="{%url 'singlecommunity' blocks.name %}"> {{blocks.name}}</a>
-   <p>{{blocks.members.count}} Member{{blocks.members.count|pluralize}}</p>
-    {{blocks.location}}
+    <div class="card col-md-3 m-4" style="background-color: #4D436B">
+   <img class="card-img-top" src="{{ blocks.community_image.url }}" alt="community image">
+   <div class="card-body">
+     <h4 class="card-title">   <a href ="{%url 'singlecommunity' blocks.name %}"> <b>Title:</b>{{blocks.name}}</a>
+     </h4>
+     <p class="card-text text-10"><b>Location:</b>{{blocks.location}}</p>
+     <p class="card-text "><b>Description:</b> {{blocks.community_description}}</p>
+     <p class="card-text ">{{blocks.members.count}} Member{{blocks.members.count|pluralize}}</p>
+    </div>
     <!-- {{blocks.occupants_count}} -->
-
+  <div class="card-footer">
     {% if request.user.profile.neighbourhood == blocks %}
-            <a href="{% url 'leave_community' blocks.id %}" class="btn btn-outline-danger btn-sm">Leave {{blocks.name}} Community</a>
+           <small class="text-muted" ><a href="{% url 'leave_community' blocks.id %}" class="btn btn-outline-danger btn-sm">Leave {{blocks.name}} Community</a></small>
             
-            <a href="{%url 'singlecommunity' blocks.name %}" class="btn btn-outline-success btn-sm" style="float: right">Take a Tour in {{blocks.name}}
-          </a>
+            <!-- <a href="{%url 'singlecommunity' blocks.name %}" class="btn btn-outline-success btn-sm" style="float: right">Take a Tour in {{blocks.name}}
+          </a> -->
             {% elif not request.user.profile.neighbourhood %}
-            <a href="{% url 'join_community' blocks.id %}" class="btn btn-info btn-sm">Join Community</a>
+            <small class="text-muted" ><a href="{% url 'join_community' blocks.id %}" class="btn btn-primary btn-sm">Join Community</a></small>
             {% endif %}
+            </div>
             </div>
 
     {% endfor %}
-
+</div>
+</div>
+</div>
 
 {%endblock %}
