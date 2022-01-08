@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load cloudinary %} {% load bootstrap4 %} {% block content %}
+<!-- content -->
+<style>
+    #content-text{
+        color:#FFFF;
+
+    }
+</style>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-4"></div>
+<div class="col-md-4">
+  
+<div class=" mt-4" id="content-text">
+  <div class="form">
+    <h4 class="text-center">UPDATE  PROFILE</h4>
+    <br>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {% bootstrap_form form %}
+      <div class="form-group">
+        <input type="submit" class="btn btn-info btn-sm" value="Update" />
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock%}
