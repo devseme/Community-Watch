@@ -8,7 +8,7 @@ class ProfileForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('profile_photo','bio','contact')     
+        fields = ('profile_photo','bio','location','contact')     
 class CreateCommunityForm(forms.ModelForm):
     class Meta:
         model=NeighbourHood
