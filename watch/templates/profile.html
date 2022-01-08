@@ -44,6 +44,8 @@
                             <span class="text-danger">No bio</span>
                             {% endif %}
                         </p>
+                        <p><b>Location:</b> {{user.profile.location}}</p>
+
                         <h6>Joined on:<br> <span class="badge rounded-pill bg-secondary text-white">
                                 {{ user.date_joined|date }} </span></h6>
                                 <p class="text-sm-centre">Contact:{{profile.contact}}</p>
@@ -52,8 +54,8 @@
             </div>
             <div class="col-md-8">
                 
-                <form action="/upload/project/">
-                    <input type="submit" class="btn btn-primary btn-lg" style=" background :#00AEDE;"value="Post a project" />
+                <form action="{%url 'create_community'%}">
+                    <input type="submit" class="btn btn-primary btn-lg" style=" background :#00AEDE;"value="Create a Community" />
                     
                 </form>
             </div>
@@ -64,7 +66,7 @@
     <br>
   
 </section>
-<style>
+ <style>
     .first{
         margin-left: 15vw;
         margin-top: -8vh;
@@ -88,7 +90,7 @@
     </div>
     </div>
     
-    <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
+    <!-- <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
     <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
     <div class="container-fluid">
         <div class="row">
@@ -113,6 +115,6 @@
         </div>
         
 
-            {% endfor %}
+            {% endfor %} --> 
             
 {% endblock %}
