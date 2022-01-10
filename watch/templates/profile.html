@@ -13,7 +13,7 @@
     }
 
     .card:hover {
-        box-shadow: 0 0 11px 5px rgba(129,52,175);
+        box-shadow: 0 0 11px 5px rgba(3, 138, 255);
         background: linear-gradient(-19deg, rgba(245,133,41) 0px);
     }
 
@@ -21,6 +21,7 @@
         border-radius: 45% !important;
     }
 </style>
+
 <section class="profile container">
     <div class=" mt-5">
         <div class="row">
@@ -45,6 +46,7 @@
                             {% endif %}
                         </p>
                         <p><b>Location:</b> {{user.profile.location}}</p>
+                        <p><b>My Hood:</b> {{user.profile.neighbourhood}}</p>
 
                         <h6>Joined on:<br> <span class="badge rounded-pill bg-secondary text-white">
                                 {{ user.date_joined|date }} </span></h6>
@@ -90,31 +92,6 @@
     </div>
     </div>
     
-    <!-- <h3 class="post-title text-center" id="ig-text">MY &nbsp; POSTED &nbsp;PROJECTS:</h3>
-    <hr style="height:3px;border-width:1;color:#E46B3F;background-color:#C4402A">
-    <div class="container-fluid">
-        <div class="row">
-       
-            {% for project in project %}
-            <div class="col-md-4" id="post-image">
-                
-                    <div class="card mb-4">
-                        <h5 class="card-title text-center"><b>Title: </b>{{project.name}}</h5>
-                        <img src="{{ project.image.url }}" class="img-responsive" alt="Image" width="400"/>
-                    </div>
-                    </p>
-            </div>
-            {% empty %}
-            
-            <div class="col-md-4">
-                <div class="alert alert-info" role="alert">
-                    No posts!
-                </div>
-            </div>
-        </div>
-        </div>
-        
-
-            {% endfor %} --> 
+   
             
 {% endblock %}
