@@ -33,10 +33,20 @@
           <i class="fas fa-sign-out-alt"></i>Logout
         </a></li>
       </ul> 
-      
-        <a class="nav-link" href="{%url 'community' %}" >Community</a>
-      
         <a style="color:rgb(214, 200, 200);" href="/admin" id="ig-text" class="nav-item text-black" active-color="black"><img src="https://img.icons8.com/metro/26/000000/manager.png"/></a>&nbsp; 
-     
+        <div class="forms col-md-4 navbar-center auth ">
+        
+         
+    
+          <form style="color:black; margin-left: 30%;font-size: 30px;"class="me-auto search-form " target="_self" action="{% url 'search_business' %}">
+              <div class="input-group text-dark">
+      
+                  <input style="font-size:15px "type="text" class="form-control" placeholder="Search Business_name"
+                      name="search_term">
+              </div>
+          </form>
+        </div>
     </div>
   </nav>
+
+  
