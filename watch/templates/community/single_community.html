@@ -1,14 +1,144 @@
-{%extends 'base.html'%}
-{% load bootstrap4 %}
-{% block content %}
-{{ block.super}}
-{% include "navbar.html" %}
-    <img src="{{ community.community_image.url }}" alt="community image">
+{%extends 'base.html'%} {% load bootstrap4 %} {% block content %} {{block.super}}
 
-   {{community.community_description}}
-  
-    {{community.location}}
-    {{community.occupants_count}}
+<style>
+    .card-img-top {
+        width: 80vw;
+        height: 80vh;
+        margin-left: 9vw;
+        /* object-fit:cover; */
+    }
+</style>
+
+<img class="card-img-top" style="margin-top: -40px" src="{{ community.community_image.url }}" alt="community image" />
+<div class="container">
+    <h3>Hood Name:&nbsp;{{community.name}}</h3>
+
+    <p>Hood Description:&nbsp;{{community.community_description}}</p>
+
+    <p>Location:&nbsp;{{community.location}}</p>
+
+    <a class="btn btn-sm text-light" style="background-color: #1b4965" href="{% url 'create_business'  %}">Create
+        Business</a>
+    <a class="btn btn-sm text-light" style="background-color: #1b4965" href="{% url 'create_post'  %}">Create a Post</a>
+    <br />
+    <div class="card-content mt-3 text-center">
+        <h5 class="mb-3 p-2" style="
+        font-size: 30px;
+        font-weight: bold;
+        color: black;
+        font-family: 'Dancing Script', cursive;
+      ">
+            <b>Contact Information</b>
+        </h5>
+        <p class="card-text" style="color: black; font-size: 20px; font-weight: bold">
+            <span>Police Department: +1-234-567-76</span> &nbsp;
+            <br />
+            <br />
+
+            <span>Hospital Department: +106-304-65</span>
+        </p>
+    </div>
+    <br />
+    <br />
+</div>
+
+<b><h2 class="text-center">Businesses in This Neighborhood</h2></b>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <a href="{%url 'create_business'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+                 Add Business
+                </a>
+            </div>
+            <div class="card m-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Neighborhood</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for business in businesses %}
+                        <tr>
+                            <td><img src="{{business.photo.url}}"class="image" style="border-radius: 50%; width: 20%; height: 0%;"></td>
+                            <td class="b-text"><h4>{{ business.name }}</h4></td>
+                            <td>{{ business.description }}</td>
+                            <td>{{ business.email }}</td>
+                            <td>{{ business.location }}</td>
+                            <td>
+                                <span class="">
+                                    {{ business.neighborhood }}
+                                </span>
+                            </td>
+                            <td>{{ business.created_on|date }}</td>
+                            <td>
+                                <a class="text-danger" href="">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-danger">No Businesses Created!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   <b> <h2 class="text-center">Posts in This Neighborhood</h2></b>
+    <div class="col-md-12 links">
+        <div class="col-md-6">
+            <a href="{%url 'create_post'  %}"  class="btn btn-outline-dark bg-dark text-white rounded-pill">
+             Add Post
+            </a>
+        </div>
+        <br>
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.content }}</td>
+                        <td><span class="badge rounded-pill bg-secondary text-white">
+                                {{ post.location }}
+                            </span></td>
+                            <td>
+                                <a class="text-danger" href="">
+                                    <i class="fa fa-trash-alt text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-danger">No Posts Created!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
 
 
 
