@@ -6,7 +6,7 @@
 # Description 
 a web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
 ##  Live Link 
-
+https://communitywatch21.herokuapp.com/
 
 ## User Story 
 * Sign in with the application to start using.
@@ -67,9 +67,9 @@ python manage.py makemigrations watch
 ```
 Open the application on your browser `127.0.0.1:8000`.
 
-####  Admin- 
+####  Admin-moringa1 
 
-#### Password-
+#### Password-password
 
 
 
