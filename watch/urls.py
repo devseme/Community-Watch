@@ -15,8 +15,9 @@ urlpatterns=[
     path('leave_community/<int:id>', views.leave_community, name='leave_community'),
     path("create_business", views.create_business, name="create_business"),
     path("businesses/", views.businesses, name="businesses"),
-    path('post/create_post', views.create_post, name='create_post'),
+    path('create_post/', views.create_post, name='create_post'),
     path('posts/', views.posts, name = 'post'),
+    path("search_business/", views.search_business, name="search_business"),
     
   
 ]
