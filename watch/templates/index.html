@@ -3,17 +3,47 @@
 {% block content %}
 {{block.super}}
 
-<body>
+
     
   
-    {%include 'navbar.html'%}
+    
     
 
-<h2 class="text-center text-primary" id="projo-title">Community-watch</h2>
+
+<div class = "container">
+    <h3 class="text-center">Available hoods: </h3>
+    <div class = "row justify-content-center  text-light">
+      {% for blocks in community %}
+      <div class="card col-md-3 m-4" style="background-color: #4D436B">
+     <img class="card-img-top" src="{{ blocks.community_image.url }}" alt="community image">
+     <div class="card-body">
+       <h4 class="card-title">   <a href ="{%url 'singlecommunity' blocks.name %}"> <b>Name:</b>{{blocks.name}}</a>
+       </h4>
+       <p class="card-text text-10"><b>Location:</b>{{blocks.location}}</p>
+       <p class="card-text "><b>Description:</b> {{blocks.community_description}}</p>
+       <p class="card-text ">{{blocks.members.count}} Member{{blocks.members.count|pluralize}}</p>
+      </div>
+      <!-- {{blocks.occupants_count}} -->
+    <div class="card-footer "style="padding-top:1%;padding-bottom:1%">
+      {% if request.user.profile.neighbourhood == blocks %}
+             <small class="text-muted" ><a href="{% url 'leave_community' blocks.id %}" class="btn btn-outline-danger btn-sm">Leave {{blocks.name}} Community</a></small>
+              
+              <!-- <a href="{%url 'singlecommunity' blocks.name %}" class="btn btn-outline-success btn-sm" style="float: right">Take a Tour in {{blocks.name}}
+            </a> -->
+              {% elif not request.user.profile.neighbourhood %}
+              <small class="text-muted" ><a href="{% url 'join_community' blocks.id %}" class="btn btn-primary btn-sm">Join Community</a></small>
+              {% endif %}
+              </div>
+              </div>
+  
+      {% endfor %}
+  </div>
+  </div>
+  </div>
 
     
       
-</body>
+
 
 
 {% endblock %}
