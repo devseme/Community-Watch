@@ -15,7 +15,7 @@ class Location(models.Model):
     def save_location(self):
         self.save()
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 # NeighbourHood Model
 class NeighbourHood(models.Model):
@@ -50,7 +50,7 @@ class NeighbourHood(models.Model):
         hood = cls.objects.get(id=id)
         return hood
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)   
@@ -73,7 +73,7 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
-    def _str_(self):
+    def __str__(self):
         return self.user.username
 
 
@@ -87,7 +87,8 @@ class Business(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     
-    
+    class Meta:
+        ordering = ['-pk']
     def __str__(self):
         return f'{self.name} Business'
 
@@ -101,17 +102,16 @@ class Business(models.Model):
     #     self.update()    
 
     @classmethod
-    def search_business(cls, name):
-        return cls.objects.filter(name__icontains=name).all()
+    def search_by_name(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+        return business    
 
-    def _str_(self):
-        return self.name 
 class Category(models.Model):
     name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name        
 #Post model
 class Post(models.Model):
@@ -125,6 +125,13 @@ class Post(models.Model):
     neighborhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='hood_post',null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+    class Meta:
+        ordering = ['-pk']
+        
+    def __str__(self):
+        return f'{self.title} Post'
+
     def create_post(self):
         self.save()
 
@@ -134,6 +141,5 @@ class Post(models.Model):
     def update_post(self):
         self.update()
 
-    def _str_(self):
-        return self.title           
+              
 
